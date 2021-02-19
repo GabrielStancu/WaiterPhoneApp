@@ -4,17 +4,17 @@ namespace WaiterPhoneApp.Models
 {
     public class Product : BaseModel
     {
-        public string Name { get; private set; }
-        public Group Group { get; private set; }
+        public string Name { get; set; }
+        public Group Group { get; set; }
         [ForeignKey("Group")]
-        public int GroupId { get; private set; }
-        public Subgroup Subgroup { get; private set; }
+        public int GroupId { get; set; }
+        public Subgroup Subgroup { get; set; }
         [ForeignKey("Subgroup")]
-        public int SubgroupId { get; private set; }
-        public double Price { get; private set; }
-        public Department Department { get; private set; }
+        public int SubgroupId { get; set; }
+        public double Price { get; set; }
+        public Department Department { get; set; }
         [ForeignKey("Department")]
-        public int DepartmentId { get; private set; }
+        public int DepartmentId { get; set; }
 
         public override bool Equals(BaseModel other)
         {

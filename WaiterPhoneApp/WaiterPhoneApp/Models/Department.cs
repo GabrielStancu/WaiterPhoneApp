@@ -2,7 +2,7 @@
 {
     public class Department : BaseModel
     {
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         public override bool Equals(BaseModel other)
         {

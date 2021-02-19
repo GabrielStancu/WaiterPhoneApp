@@ -8,7 +8,7 @@ using WaiterPhoneApp.Models;
 
 namespace WaiterPhoneApp.LocalDbEntities
 {
-    public class GenericEntity<T, U> 
+    public class LocalGenericEntity<T, U> 
         where T: BaseModel
         where U: RestaurantDatabaseContext
     {
