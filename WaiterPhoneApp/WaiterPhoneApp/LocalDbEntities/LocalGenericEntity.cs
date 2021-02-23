@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WaiterPhoneApp.Helpers;
+using WaiterPhoneApp.DatabaseContext;
 using WaiterPhoneApp.Models;
 
 namespace WaiterPhoneApp.LocalDbEntities
@@ -45,7 +45,7 @@ namespace WaiterPhoneApp.LocalDbEntities
             }
         }
 
-        public async Task Insert(T entity)
+        public async Task InsertAsync(T entity)
         {
             using (var context = CreateContext())
             {
@@ -59,7 +59,7 @@ namespace WaiterPhoneApp.LocalDbEntities
             }
         }
 
-        public async Task Update(T entity)
+        public async Task UpdateAsync(T entity)
         {
             using (var context = CreateContext())
             {
@@ -68,7 +68,7 @@ namespace WaiterPhoneApp.LocalDbEntities
             } 
         }
 
-        public async Task Delete(T entity)
+        public async Task DeleteAsync(T entity)
         {
             using (var context = CreateContext())
             {

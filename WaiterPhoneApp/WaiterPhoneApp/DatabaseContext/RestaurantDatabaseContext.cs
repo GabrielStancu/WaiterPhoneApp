@@ -1,12 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using WaiterPhoneApp.Models;
 using Xamarin.Forms;
 
-namespace WaiterPhoneApp.Helpers
+namespace WaiterPhoneApp.DatabaseContext
 {
     public class RestaurantDatabaseContext : DbContext
     {
