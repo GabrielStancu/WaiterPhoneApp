@@ -9,7 +9,7 @@ namespace WaiterPhoneApp.Mappers
 {
     public class GroupMapper : EntityMapper<Group>
     {
-        public async Task<Group> Map(SqlDataReader reader)
+        public async new Task<Group> Map(SqlDataReader reader)
         {
             await Task.Run(async () =>
             {

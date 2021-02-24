@@ -9,7 +9,7 @@ namespace WaiterPhoneApp.Mappers
 {
     public class UserMapper : EntityMapper<User>
     {
-        public async Task<User> Map(SqlDataReader reader)
+        public async new Task<User> Map(SqlDataReader reader)
         {
             await Task.Run(async () =>
             {

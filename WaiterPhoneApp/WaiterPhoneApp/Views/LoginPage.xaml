@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WaiterPhoneApp.Views.LoginPage">
+    <ContentPage.Resources>
+        <Style x:Key="UpperLabelStyle" TargetType="Label">
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Left"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+        </Style>
+        <Style x:Key="MiddleLabelStyle" TargetType="Label">
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Start"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style x:Key="EntryFrameStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="WhiteSmoke"/>
+            <Setter Property="CornerRadius" Value="2"/>
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="DarkBlue"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="CornerRadius" Value="3"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="DarkOrange">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="User: " Grid.Row="0" Grid.Column="0" Style="{StaticResource UpperLabelStyle}"/>
+                    <Label Text="{Binding Username}" Grid.Row="0" Grid.Column="1" Style="{StaticResource UpperLabelStyle}"/>
+                    <Label Text="Department: " Grid.Row="1" Grid.Column="0" Style="{StaticResource UpperLabelStyle}"/>
+                    <Label Text="{Binding UserDepartment}" Grid.Row="1" Grid.Column="1" Style="{StaticResource UpperLabelStyle}"/>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="{Binding CurrentDate}" HorizontalTextAlignment="End" Style="{StaticResource UpperLabelStyle}"
+                       HorizontalOptions="End" VerticalOptions="Start"/>
+                    <ImageButton Grid.Row="1" HorizontalOptions="End" BackgroundColor="Transparent" Margin="5,0" Source="settings_icon.png"/>
+                </Grid>
+                
+            </Grid>
+
+            <Image Source="icon.png" HorizontalOptions="Center" HeightRequest="140" WidthRequest="140" Margin="15"/>
+
+            <Grid HorizontalOptions="FillAndExpand" Margin="25,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.25*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Username: " Grid.Row="0" Grid.Column="0" Style="{StaticResource MiddleLabelStyle}"/>
+                <Frame Style="{StaticResource EntryFrameStyle}"  Grid.Row="0" Grid.Column="1">
+                    <Entry Placeholder="username"/>
+                </Frame>
+                <Label Text="Password: " Grid.Row="1" Grid.Column="0" Style="{StaticResource MiddleLabelStyle}"/>
+                <Frame Style="{StaticResource EntryFrameStyle}"  Grid.Row="1" Grid.Column="1">
+                    <Entry IsPassword="True" Placeholder="password"/>
+                </Frame>
+                
+                <Button Text="Login" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="20, 15" Style="{StaticResource ButtonStyle}"/>
+                <Button Text="SignUp" Grid.Row="3" Grid.Column="0" HeightRequest="25" HorizontalOptions="EndAndExpand" Margin="0, 5" Style="{StaticResource ButtonStyle}"/>
+
+                <Grid Grid.Row="3" Grid.Column="1" HorizontalOptions="StartAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Remember user?" Grid.Row="0" TextColor="White" HorizontalOptions="Center" VerticalOptions="End" VerticalTextAlignment="End" Margin="5,0"/>
+                    <CheckBox Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Start" Margin="5,0"/>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

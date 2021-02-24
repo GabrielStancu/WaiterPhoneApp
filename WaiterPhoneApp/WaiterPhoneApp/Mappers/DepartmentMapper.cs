@@ -7,7 +7,7 @@ namespace WaiterPhoneApp.Mappers
 {
     public class DepartmentMapper : EntityMapper<Department>
     {
-        public async Task<Department> Map(SqlDataReader reader)
+        public async new Task<Department> Map(SqlDataReader reader)
         {
             await Task.Run(() =>
             {

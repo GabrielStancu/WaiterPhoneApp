@@ -7,7 +7,7 @@ namespace WaiterPhoneApp.Mappers
 {
     public class RoleMapper : EntityMapper<Role>
     {
-        public async Task<Role> Map(SqlDataReader reader)
+        public async new Task<Role> Map(SqlDataReader reader)
         {
             await Task.Run(() =>
             {

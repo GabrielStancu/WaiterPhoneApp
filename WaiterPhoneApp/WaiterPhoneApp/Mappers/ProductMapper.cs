@@ -9,7 +9,7 @@ namespace WaiterPhoneApp.Mappers
 {
     public class ProductMapper : EntityMapper<Product>
     {
-        public async Task<Product> Map(SqlDataReader reader)
+        public async new Task<Product> Map(SqlDataReader reader)
         {
             await Task.Run(async () =>
             {
