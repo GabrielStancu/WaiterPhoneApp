@@ -7,7 +7,6 @@ namespace WaiterPhoneApp.Models
         public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Password { get; set; }
         public Department Department { get; set; }
         [ForeignKey("Department")]
         public int DepartmentId { get; set; }

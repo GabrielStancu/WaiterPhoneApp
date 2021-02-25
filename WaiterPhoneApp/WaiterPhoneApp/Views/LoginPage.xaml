@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WaiterPhoneApp.Views.LoginPage">
+             x:Class="WaiterPhoneApp.Views.LoginPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <Style x:Key="UpperLabelStyle" TargetType="Label">
             <Setter Property="VerticalTextAlignment" Value="Center"/>
@@ -60,7 +61,8 @@
 
                     <Label Grid.Row="0" Text="{Binding CurrentDate}" HorizontalTextAlignment="End" Style="{StaticResource UpperLabelStyle}"
                        HorizontalOptions="End" VerticalOptions="Start"/>
-                    <ImageButton Grid.Row="1" HorizontalOptions="End" BackgroundColor="Transparent" Margin="5,0" Source="settings_icon.png"/>
+                    <ImageButton Grid.Row="1" HorizontalOptions="End" BackgroundColor="Transparent" Margin="5,0" Source="settings_icon.png"
+                                 Clicked="OnSettingsButtonClick"/>
                 </Grid>
                 
             </Grid>
@@ -82,15 +84,17 @@
 
                 <Label Text="Username: " Grid.Row="0" Grid.Column="0" Style="{StaticResource MiddleLabelStyle}"/>
                 <Frame Style="{StaticResource EntryFrameStyle}"  Grid.Row="0" Grid.Column="1">
-                    <Entry Placeholder="username"/>
+                    <Entry x:Name="UsernameEntry" Placeholder="username"/>
                 </Frame>
                 <Label Text="Password: " Grid.Row="1" Grid.Column="0" Style="{StaticResource MiddleLabelStyle}"/>
                 <Frame Style="{StaticResource EntryFrameStyle}"  Grid.Row="1" Grid.Column="1">
-                    <Entry IsPassword="True" Placeholder="password"/>
+                    <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="password"/>
                 </Frame>
                 
-                <Button Text="Login" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="20, 15" Style="{StaticResource ButtonStyle}"/>
-                <Button Text="SignUp" Grid.Row="3" Grid.Column="0" HeightRequest="25" HorizontalOptions="EndAndExpand" Margin="0, 5" Style="{StaticResource ButtonStyle}"/>
+                <Button Text="Login" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="20, 15" Style="{StaticResource ButtonStyle}"
+                        Clicked="OnLoginButtonClick"/>
+                <Button Text="SignUp" Grid.Row="3" Grid.Column="0" HeightRequest="25" HorizontalOptions="EndAndExpand" Margin="0, 5" Style="{StaticResource ButtonStyle}"
+                        Clicked="OnSignupButtonClick"/>
 
                 <Grid Grid.Row="3" Grid.Column="1" HorizontalOptions="StartAndExpand">
                     <Grid.RowDefinitions>
@@ -99,7 +103,8 @@
                     </Grid.RowDefinitions>
 
                     <Label Text="Remember user?" Grid.Row="0" TextColor="White" HorizontalOptions="Center" VerticalOptions="End" VerticalTextAlignment="End" Margin="5,0"/>
-                    <CheckBox Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Start" Margin="5,0"/>
+                    <CheckBox Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Start" Margin="5,0"
+                              CheckedChanged="OnRememberUserCheckboxCheck"/>
                 </Grid>
             </Grid>
         </StackLayout>

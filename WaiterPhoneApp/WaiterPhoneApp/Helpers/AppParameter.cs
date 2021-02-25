@@ -8,9 +8,8 @@ namespace WaiterPhoneApp.Helpers
     {
         public string Key { get; set; }
         public string Value { get; set; }
-        public string DefaultValue { get; set; }
 
-        public AppParameter(string key, string value, string defaultValue)
-            => (Key, Value, DefaultValue) = (key, value, defaultValue);
+        public AppParameter(string key, string value)
+            => (Key, Value) = (key, value);
     }
 }

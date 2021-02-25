@@ -19,7 +19,6 @@ namespace WaiterPhoneApp.Mappers
                     Username = reader["Username"].ToString(),
                     FirstName = reader["FirstName"].ToString(),
                     LastName = reader["LastName"].ToString(),
-                    Password = reader["Password"].ToString(),
                     DepartmentId = Int32.Parse(reader["DepartmentId"].ToString()),
                     RoleId = Int32.Parse(reader["RoleId"].ToString()),
                 };
