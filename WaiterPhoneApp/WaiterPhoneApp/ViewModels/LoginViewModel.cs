@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WaiterPhoneApp.ViewModels
 {
@@ -9,12 +7,14 @@ namespace WaiterPhoneApp.ViewModels
         public string Username { get; set; }
         public string UserDepartment { get; set; }
         public string CurrentDate { get; set; }
+        public bool StoredUser { get; set; }
 
-        public LoginViewModel(string username, string department)
+        public LoginViewModel(string username, string department, bool storedUser)
         {
             Username = username;
             UserDepartment = department;
             CurrentDate = DateTime.Today.ToString("dd.MM.yyyy");
+            StoredUser = storedUser;
         }
     }
 }

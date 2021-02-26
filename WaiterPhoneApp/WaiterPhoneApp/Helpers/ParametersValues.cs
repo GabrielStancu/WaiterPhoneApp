@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace WaiterPhoneApp.Helpers
 {
@@ -9,8 +6,14 @@ namespace WaiterPhoneApp.Helpers
     {
         [Description("LoadFromOnlineDatabase")]
         LoadFromOnlineDatabase,
-        [Description("OnlineDatabaseConnectionString")]
-        OnlineDatabaseConnectionString,
+        [Description("OnlineDatabaseServer")]
+        OnlineDatabaseServer,
+        [Description("OnlineDatabaseDatabase")]
+        OnlineDatabaseDatabase,
+        [Description("OnlineDatabaseUser")]
+        OnlineDatabaseUser,
+        [Description("OnlineDatabasePassword")]
+        OnlineDatabasePassword,
         [Description("RememberUser")]
         RememberUser,
         [Description("CurrentUserName")]

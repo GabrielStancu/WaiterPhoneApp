@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using WaiterPhoneApp.Helpers;
 using WaiterPhoneApp.Models;
 using WaiterPhoneApp.OnlineDbEntities;
@@ -14,32 +12,37 @@ namespace WaiterPhoneApp.Views
     public partial class LoginPage : ContentPage
     {
         public LoginViewModel LoginViewModel { get; set; }
+        private bool _configuredUser = false;
         public LoginPage()
         {
             InitializeComponent();
             SetBindingContext();
+            //we should check if all the data is taken from online db on startup here...
         }
 
-        private async void SetBindingContext()
+        protected async override void OnAppearing()
         {
-            try
+            if(!_configuredUser)
             {
-                var loader = new LoginPageParametersLoader();
-                List<AppParameter> appParameters = loader.LoadParameters();
-
-                string user = appParameters
-                    .Where(p => p.Key.Equals(ParameterValue.CurrentUserName.ToString())).FirstOrDefault().Value;
-
-                string department = appParameters
-                    .Where(p => p.Key.Equals(ParameterValue.CurrentDepartment.ToString())).FirstOrDefault().Value;
-
-
-                LoginViewModel = new LoginViewModel(user, department);
-                BindingContext = LoginViewModel;
+                await DisplayAlert("Parameter error", "One of the parameters is not set. You will be redirected to parameters page.", "OK");
+                await Navigation.PushAsync(new SettingsPage());
             }
-            catch(NullReferenceException)
+            else if (this.LoginViewModel.StoredUser)
             {
-                await DisplayAlert("Parameters error", "One of the paramaters was not set, you will be redirected to the parameters page", "OK");
+                this.UsernameEntry.Text = LoginViewModel.Username;
+                this.PasswordEntry.Text =
+                    new ParametersLoader().GetParameter(ParameterValue.CurrentPassword);
+            }
+        }
+
+        private void SetBindingContext()
+        {
+            LoginViewModelCreator creator = new LoginViewModelCreator();
+            LoginViewModel = creator.CreateLoginViewModel();
+
+            if(LoginViewModel != null)
+            {
+                _configuredUser = true;
             }
         }
 
@@ -51,7 +54,10 @@ namespace WaiterPhoneApp.Views
         private async void OnLoginButtonClick(object sender, EventArgs e)
         {
             UserEntity userEntity = new UserEntity();
-            User user = await userEntity.SelectUserWithLoginInformation(UsernameEntry.Text, PasswordEntry.Text);
+            User user = await userEntity.SelectUserWithLoginInformation(UsernameEntry.Text, PasswordEntry.Text); //make it case sensitive...
+            //wrap this up in internet connection check
+            //see if database responds 
+            //if connected to internet and database responds (good connection string), proceed next
 
             if(user is null)
             {
@@ -72,8 +78,7 @@ namespace WaiterPhoneApp.Views
 
         private void OnRememberUserCheckboxCheck(object sender, CheckedChangedEventArgs e)
         {
-            ParametersLoader loader = new ParametersLoader();
-            loader.SetParameter(ParameterValue.RememberUser, e.Value.ToString());
+            new ParametersLoader().SetParameter(ParameterValue.RememberUser, e.Value.ToString());
         }
     }
 }
