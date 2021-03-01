@@ -11,7 +11,7 @@ namespace WaiterPhoneApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        public LoginViewModel LoginViewModel { get; set; }
+        LoginViewModel LoginViewModel;
         private bool _configuredUser = false;
         public LoginPage()
         {
@@ -22,7 +22,7 @@ namespace WaiterPhoneApp.Views
 
         protected async override void OnAppearing()
         {
-            if(!_configuredUser)
+            if (!_configuredUser)
             {
                 await DisplayAlert("Parameter error", "One of the parameters is not set. You will be redirected to parameters page.", "OK");
                 await Navigation.PushAsync(new SettingsPage());
@@ -78,7 +78,7 @@ namespace WaiterPhoneApp.Views
 
         private void OnRememberUserCheckboxCheck(object sender, CheckedChangedEventArgs e)
         {
-            new ParametersLoader().SetParameter(ParameterValue.RememberUser, e.Value.ToString());
+            new ParametersSaver().SetParameter(ParameterValue.RememberUser, e.Value.ToString());
         }
     }
 }

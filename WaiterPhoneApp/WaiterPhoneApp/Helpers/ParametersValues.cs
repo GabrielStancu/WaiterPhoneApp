@@ -20,6 +20,8 @@ namespace WaiterPhoneApp.Helpers
         CurrentUserName,
         [Description("CurrentPassword")]
         CurrentPassword,
+        [Description("Nickname")]
+        Nickname,
         [Description("CurrentDepartment")]
         CurrentDepartment
     }

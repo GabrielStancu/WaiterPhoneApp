@@ -48,9 +48,9 @@
                     </Grid.RowDefinitions>
 
                     <Label Text="User: " Grid.Row="0" Grid.Column="0" Style="{StaticResource UpperLabelStyle}"/>
-                    <Label Text="{Binding Username}" Grid.Row="0" Grid.Column="1" Style="{StaticResource UpperLabelStyle}"/>
+                    <Label Text="{Binding Username, TargetNullValue='Not set'}" Grid.Row="0" Grid.Column="1" Style="{StaticResource UpperLabelStyle}"/>
                     <Label Text="Department: " Grid.Row="1" Grid.Column="0" Style="{StaticResource UpperLabelStyle}"/>
-                    <Label Text="{Binding UserDepartment}" Grid.Row="1" Grid.Column="1" Style="{StaticResource UpperLabelStyle}"/>
+                    <Label Text="{Binding UserDepartment, TargetNullValue='Not set'}" Grid.Row="1" Grid.Column="1" Style="{StaticResource UpperLabelStyle}"/>
                 </Grid>
 
                 <Grid Grid.Column="1">

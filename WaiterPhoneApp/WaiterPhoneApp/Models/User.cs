@@ -4,6 +4,7 @@ namespace WaiterPhoneApp.Models
 {
     public class User : BaseModel
     {
+        public string Nickname { get; set; }
         public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

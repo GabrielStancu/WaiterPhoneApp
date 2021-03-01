@@ -13,13 +13,5 @@ namespace WaiterPhoneApp.Helpers
 
             return null;
         }
-
-        public void SetParameter(ParameterValue parameter, string value)
-        {
-            if (Preferences.ContainsKey(parameter.ToString()))
-            {
-                Preferences.Set(parameter.ToString(), value);
-            }
-        }
     }
 }
