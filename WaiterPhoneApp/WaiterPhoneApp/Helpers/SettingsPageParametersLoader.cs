@@ -4,16 +4,15 @@ using System.Text;
 
 namespace WaiterPhoneApp.Helpers
 {
-#nullable enable
     public class SettingsPageParametersLoader : ParametersLoader
     {
-        public AppParameter? Nickname { get; private set; }
-        public AppParameter? Department { get; private set; }
-        public AppParameter? ServerName { get; private set; }
-        public AppParameter? DatabaseName { get; private set; }
-        public AppParameter? DbUser { get; private set; }
-        public AppParameter? DbPassword { get; private set; }
-        public AppParameter? LoadAtStartup { get; private set; }
+        public AppParameter Nickname { get; private set; }
+        public AppParameter Department { get; private set; }
+        public AppParameter ServerName { get; private set; }
+        public AppParameter DatabaseName { get; private set; }
+        public AppParameter DbUser { get; private set; }
+        public AppParameter DbPassword { get; private set; }
+        public AppParameter LoadAtStartup { get; private set; }
 
         public SettingsPageParametersLoader()
         {

@@ -11,7 +11,7 @@ namespace WaiterPhoneApp.Helpers
                 return Preferences.Get(parameter.ToString(), string.Empty);
             }
 
-            return null;
+            return string.Empty;
         }
     }
 }

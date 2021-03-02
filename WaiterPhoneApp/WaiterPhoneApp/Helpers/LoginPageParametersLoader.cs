@@ -1,18 +1,17 @@
 ﻿namespace WaiterPhoneApp.Helpers
 {
-#nullable enable
     public class LoginPageParametersLoader : ParametersLoader
     {
-        public AppParameter? Username { get; private set; }
-        public AppParameter? Nickname { get; private set; }
-        public AppParameter? Department { get; private set; }
-        public AppParameter? RememberUser { get; private set; }
-        public AppParameter? ServerName { get; private set; }
-        public AppParameter? DatabaseName { get; private set; }
-        public AppParameter? DbUser { get; private set; }
-        public AppParameter? DbPassword { get; private set; }
-        public AppParameter? AppPassword { get; private set; }
-        public AppParameter? LoadFromOnlineDb { get; private set; }
+        public AppParameter Username { get; private set; }
+        public AppParameter Nickname { get; private set; }
+        public AppParameter Department { get; private set; }
+        public AppParameter RememberUser { get; private set; }
+        public AppParameter ServerName { get; private set; }
+        public AppParameter DatabaseName { get; private set; }
+        public AppParameter DbUser { get; private set; }
+        public AppParameter DbPassword { get; private set; }
+        public AppParameter AppPassword { get; private set; }
+        public AppParameter LoadFromOnlineDb { get; private set; }
 
         public LoginPageParametersLoader()
         {
