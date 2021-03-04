@@ -1,4 +1,5 @@
 ﻿using System;
+using WaiterPhoneApp.Exceptions;
 using WaiterPhoneApp.Helpers;
 using WaiterPhoneApp.Models;
 using WaiterPhoneApp.OnlineDbEntities;
@@ -16,8 +17,7 @@ namespace WaiterPhoneApp.Views
         public LoginPage()
         {
             InitializeComponent();
-            //SetBindingContext();
-            //we should check if all the data is taken from online db on startup here...
+            CheckLoadFromDatabaseOnStartup();
         }
 
         protected async override void OnAppearing()
@@ -61,22 +61,30 @@ namespace WaiterPhoneApp.Views
 
         private async void OnLoginButtonClick(object sender, EventArgs e)
         {
-            UserEntity userEntity = new UserEntity();
-            User user = await userEntity.SelectUserWithLoginInformation(UsernameEntry.Text, PasswordEntry.Text); //make it case sensitive...
-            //wrap this up in internet connection check
-            //see if database responds 
-            //if connected to internet and database responds (good connection string), proceed next
+            string networkResponse = WifiConnectionResponseMessageDisplayer.GenerateResponse();
 
-            if(user is null)
+            if(!networkResponse.Equals(string.Empty))
             {
-                await DisplayAlert("Login failed", "The username or the password provided is incorrect.", "OK");
+                await DisplayAlert("Connection error", networkResponse, "OK");
+                return;
+            }
+
+            try
+            {
+                UserEntity userEntity = new UserEntity();
+                User user = await userEntity.SelectUserWithLoginInformation(UsernameEntry.Text, PasswordEntry.Text);
+                await Navigation.PushAsync(new MainPage());
+            }
+            catch(BadConnectionStringException ex)
+            {
+                await DisplayAlert("Bad connection string", ex.Message, "OK");
+            }
+            catch(WrongUserCredentialsException ex)
+            {
+                await DisplayAlert("Login failed", ex.Message, "OK");
                 UsernameEntry.Text = string.Empty;
                 PasswordEntry.Text = string.Empty;
             }
-            else
-            {
-                await Navigation.PushAsync(new MainPage());
-            } 
         }
 
         private async void OnSignupButtonClick(object sender, EventArgs e)
@@ -98,6 +106,11 @@ namespace WaiterPhoneApp.Views
 
             UserValueLabel.IsVisible = visibility;
             DepartmentValueLabel.IsVisible = visibility;
+        }
+
+        private void CheckLoadFromDatabaseOnStartup()
+        {
+            //TODO
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Text;
+﻿using System.Data.SqlClient;
 
 namespace WaiterPhoneApp.Helpers
 {
@@ -16,8 +13,8 @@ namespace WaiterPhoneApp.Helpers
 
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
             {
-                InitialCatalog = server,
-                DataSource = database,
+                DataSource = server,
+                InitialCatalog = database,
                 UserID = user,
                 Password = password
             };

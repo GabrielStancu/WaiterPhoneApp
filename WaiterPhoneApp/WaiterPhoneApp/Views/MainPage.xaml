@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WaiterPhoneApp.Views.MainPage">
   <!--Pages can be added as references or inline-->
-    <ContentPage Title="Tab 1">
-        <Label Text="This is main page #1"/>
+    <ContentPage Title="Orders">
+        <Label Text="This is the orders page!"/>
     </ContentPage>
-    <ContentPage Title="Tab 2">
-        <Label Text="This is main page #2"/>
+    <ContentPage Title="Tables">
+        <Label Text="This is the tables page!"/>
     </ContentPage>
-    <ContentPage Title="Tab 3">
-        <Label Text="This is main page #3"/>
+    <ContentPage Title="Products">
+        <Label Text="This is the products page!"/>
     </ContentPage>
 </TabbedPage>

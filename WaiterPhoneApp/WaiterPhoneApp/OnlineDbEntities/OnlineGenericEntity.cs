@@ -11,7 +11,17 @@ namespace WaiterPhoneApp.OnlineDbEntities
     {
         protected SqlConnection EstablishSqlConnection()
         {
-            return new OnlineSqlConnection().GetSqlConnection();
+            var conn = new OnlineSqlConnection().GetSqlConnection();
+
+            try
+            {
+                conn.Open();
+                return conn;
+            }
+            catch(SqlException)
+            {
+                return null;
+            }
         }
         public async Task<List<T>> SelectAllEntitiesAsync()
         {
@@ -83,7 +93,5 @@ namespace WaiterPhoneApp.OnlineDbEntities
 
         //UPDATE and INSERT queries are dependent on field structure, not all classes should implement it
         //Create OnlineEntity mirroring for those classes that need it
-
-        //TODO: check internet connection for methods in here...
     }
 }
