@@ -1,5 +1,6 @@
 ﻿using System;
 using WaiterPhoneApp.Helpers;
+using WaiterPhoneApp.Helpers.ParametersHelpers;
 using WaiterPhoneApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

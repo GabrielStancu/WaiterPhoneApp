@@ -1,8 +1,10 @@
 ﻿using System;
-using WaiterPhoneApp.Exceptions;
-using WaiterPhoneApp.Helpers;
+using WaiterPhoneApp.Database.OnlineDatabase.OnlineDbEntities;
+using WaiterPhoneApp.Helpers.Exceptions;
+using WaiterPhoneApp.Helpers.ParametersHelpers;
+using WaiterPhoneApp.Helpers.ViewModelCreators;
+using WaiterPhoneApp.Helpers.WifiConnectionHelpers;
 using WaiterPhoneApp.Models;
-using WaiterPhoneApp.OnlineDbEntities;
 using WaiterPhoneApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -72,7 +74,7 @@ namespace WaiterPhoneApp.Views
             try
             {
                 UserEntity userEntity = new UserEntity();
-                User user = await userEntity.SelectUserWithLoginInformation(UsernameEntry.Text, PasswordEntry.Text);
+                RestaurantUser user = await userEntity.SelectUserWithLoginInformation(UsernameEntry.Text, PasswordEntry.Text);
                 await Navigation.PushAsync(new MainPage());
             }
             catch(BadConnectionStringException ex)
