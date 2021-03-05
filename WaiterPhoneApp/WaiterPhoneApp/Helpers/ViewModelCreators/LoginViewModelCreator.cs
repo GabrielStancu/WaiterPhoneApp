@@ -1,4 +1,5 @@
-﻿using WaiterPhoneApp.Database.OnlineDatabase.DbOnline;
+﻿using WaiterPhoneApp.Database.DatabaseContexts;
+using WaiterPhoneApp.Database.DatabaseHelpers;
 using WaiterPhoneApp.Helpers.ParametersHelpers;
 using WaiterPhoneApp.ViewModels;
 
@@ -33,7 +34,7 @@ namespace WaiterPhoneApp.Helpers.ViewModelCreators
                 !connectionString.Equals(string.Empty))
             {
                 //if user is stored, retrieve password as well and store it in viewmodel
-                OnlineSqlConnection.SetConnectionString(connectionString);
+                OnlineRestaurantDatabaseContext.SetConnectionString(connectionString);
                 return new LoginViewModel(userNickname, department, storedUser);
             }
 

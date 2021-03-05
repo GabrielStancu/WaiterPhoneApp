@@ -4,9 +4,9 @@ using System.IO;
 using WaiterPhoneApp.Models;
 using Xamarin.Forms;
 
-namespace WaiterPhoneApp.Database.LocalDatabase.DatabaseContext
+namespace WaiterPhoneApp.Database.DatabaseContexts
 {
-    public class RestaurantDatabaseContext : DbContext
+    public class LocalRestaurantDatabaseContext : BaseContext
     {
         public DbSet<Product> Products { get; private set; }
         public DbSet<Group> Groups { get; private set; }

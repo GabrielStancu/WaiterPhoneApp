@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace WaiterPhoneApp.Database.OnlineDatabase.DbOnline
+namespace WaiterPhoneApp.Database.DatabaseHelpers
 {
     public class OnlineConnectionStringBuilder
     {

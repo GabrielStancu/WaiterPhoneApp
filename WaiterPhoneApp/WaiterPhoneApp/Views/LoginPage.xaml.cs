@@ -1,5 +1,5 @@
 ﻿using System;
-using WaiterPhoneApp.Database.OnlineDatabase.OnlineDbEntities;
+using WaiterPhoneApp.Database.Entities;
 using WaiterPhoneApp.Helpers.Exceptions;
 using WaiterPhoneApp.Helpers.ParametersHelpers;
 using WaiterPhoneApp.Helpers.ViewModelCreators;

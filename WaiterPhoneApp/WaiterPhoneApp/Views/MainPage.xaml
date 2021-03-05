@@ -4,8 +4,17 @@
              x:Class="WaiterPhoneApp.Views.MainPage"
              NavigationPage.HasNavigationBar="False">
   <!--Pages can be added as references or inline-->
-    <ContentPage Title="Orders">
-        <Label Text="This is the orders page!"/>
+    <ContentPage Title="Orders" BackgroundColor="Gray">
+        <!--This is just for testing purposes, will be deleted and replaced by the actual implementation-->
+        <StackLayout>
+            <Label Text="This is the orders page!"/>
+            <Button Text="Select User From Database" Clicked="OnSelectUserClicked"/>
+            <Label x:Name="UserLabel"/>
+            <Label Text="New nickname:"/>
+            <Entry x:Name="NicknameEntry"/>
+            <Button Text="Update Nickname" Clicked="OnUpdateNicknameClicked"/>
+        </StackLayout>
+
     </ContentPage>
     <ContentPage Title="Tables">
         <Label Text="This is the tables page!"/>
