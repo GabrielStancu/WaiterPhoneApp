@@ -1,4 +1,5 @@
 ﻿using System;
+using WaiterPhoneApp.Database.DatabaseContexts;
 using WaiterPhoneApp.Database.Entities;
 using WaiterPhoneApp.Helpers.Exceptions;
 using WaiterPhoneApp.Helpers.ParametersHelpers;
@@ -28,7 +29,7 @@ namespace WaiterPhoneApp.Views
             if (!_configuredUser)
             {
                 await DisplayAlert("Parameter error", "One of the parameters is not set. You will be redirected to parameters page.", "OK");
-                await Navigation.PushAsync(new SettingsPage());
+                await Navigation.PushAsync(new SettingsPage(OnlineRestaurantDatabaseContext.IsConnectionStringSet()));
             }
             else if (this.model.StoredUser)
             {
@@ -40,8 +41,7 @@ namespace WaiterPhoneApp.Views
 
         private void SetBindingContext()
         {
-            LoginViewModelCreator creator = new LoginViewModelCreator();
-            model = creator.CreateLoginViewModel();
+            model = new LoginViewModelCreator().CreateLoginViewModel();
 
             if(model != null)
             {
@@ -58,7 +58,7 @@ namespace WaiterPhoneApp.Views
 
         private async void OnSettingsButtonClick(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SettingsPage());
+            await Navigation.PushAsync(new SettingsPage(OnlineRestaurantDatabaseContext.IsConnectionStringSet()));
         }
 
         private async void OnLoginButtonClick(object sender, EventArgs e)
@@ -75,7 +75,7 @@ namespace WaiterPhoneApp.Views
             {
                 UserEntity userEntity = new UserEntity();
                 RestaurantUser user = await userEntity.SelectUserWithLoginInformation(UsernameEntry.Text, PasswordEntry.Text);
-                await Navigation.PushAsync(new MainPage());
+                await Navigation.PushAsync(new MainPage(user));
             }
             catch(BadConnectionStringException ex)
             {

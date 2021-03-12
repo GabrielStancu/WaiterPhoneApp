@@ -11,8 +11,9 @@ namespace WaiterPhoneApp.Views
     public partial class MainPage : TabbedPage
     {
         private RestaurantUser _user;
-        public MainPage()
+        public MainPage(RestaurantUser user)
         {
+            _user = user;
             InitializeComponent();
         }
 

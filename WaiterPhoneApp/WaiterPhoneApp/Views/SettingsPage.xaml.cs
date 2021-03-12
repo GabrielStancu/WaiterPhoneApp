@@ -1,5 +1,4 @@
 ﻿using System;
-using WaiterPhoneApp.Helpers;
 using WaiterPhoneApp.Helpers.ParametersHelpers;
 using WaiterPhoneApp.ViewModels;
 using Xamarin.Forms;
@@ -10,11 +9,11 @@ namespace WaiterPhoneApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage
     {
-        readonly SettingsViewModel model;
-        public SettingsPage()
+        SettingsViewModel model;
+        public SettingsPage(bool loadDepartments)
         {
             InitializeComponent();
-            model = new SettingsViewModel();
+            model = new SettingsViewModel(loadDepartments);
             this.BindingContext = model;
         }
 

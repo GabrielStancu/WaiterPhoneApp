@@ -6,17 +6,12 @@ namespace WaiterPhoneApp.Database.DatabaseHelpers
     {
         public string Build(string server, string database, string user, string password)
         {
-            if (server == null || database == null || user == null || password == null)
-            {
-                return string.Empty;
-            }
-
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
             {
-                DataSource = server,
-                InitialCatalog = database,
-                UserID = user,
-                Password = password
+                DataSource = server ?? string.Empty,
+                InitialCatalog = database ?? string.Empty,
+                UserID = user ?? string.Empty,
+                Password = password ?? string.Empty
             };
 
             return builder.ConnectionString;

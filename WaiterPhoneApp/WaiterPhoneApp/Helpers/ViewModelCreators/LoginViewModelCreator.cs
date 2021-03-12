@@ -29,12 +29,13 @@ namespace WaiterPhoneApp.Helpers.ViewModelCreators
             bool storedUser = bool.Parse(loader.RememberUser.Value);
             string connectionString = new OnlineConnectionStringBuilder()
                     .Build(loader.ServerName.Value, loader.DatabaseName.Value, loader.DbUser.Value, loader.DbPassword.Value);
+            OnlineRestaurantDatabaseContext.SetConnectionString(connectionString);
 
-            if (!userNickname.Equals(string.Empty) && !department.Equals(string.Empty) &&
-                !connectionString.Equals(string.Empty))
+            bool isConnectionStringSet = OnlineRestaurantDatabaseContext.IsConnectionStringSet();
+            if (!userNickname.Equals(string.Empty) && !department.Equals(string.Empty) && isConnectionStringSet)
             {
                 //if user is stored, retrieve password as well and store it in viewmodel
-                OnlineRestaurantDatabaseContext.SetConnectionString(connectionString);
+                
                 return new LoginViewModel(userNickname, department, storedUser);
             }
 

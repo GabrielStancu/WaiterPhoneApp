@@ -27,13 +27,7 @@ namespace WaiterPhoneApp.Database.Entities
             return await context.Set<T>().FindAsync(id);
         }
 
-        public async Task<IReadOnlyList<T>> SelectAllAsReadOnlyAsync()
-        {
-            using var context = CreateContext();
-            return await context.Set<T>().AsNoTracking().ToListAsync();
-        }
-
-        public async Task<List<T>> SelectAllAsReadWriteAsync()
+        public async Task<List<T>> SelectAllAsync()
         {
             using var context = CreateContext();
             return await context.Set<T>().ToListAsync();

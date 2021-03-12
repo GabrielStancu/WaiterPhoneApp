@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 using WaiterPhoneApp.Models;
+using Group = WaiterPhoneApp.Models.Group;
 
 namespace WaiterPhoneApp.Database.DatabaseContexts
 {
@@ -21,10 +23,25 @@ namespace WaiterPhoneApp.Database.DatabaseContexts
 
         public static void SetConnectionString(string connectionString)
         {
-            if (_connectionString.Equals(string.Empty))
+            _connectionString = connectionString;
+        }
+
+        public static bool IsConnectionStringSet()
+        {
+            string connectionStringRegex = "Data Source=(.*?);Initial Catalog=(.*?);User ID=(.*?);Password=(.*?)$";
+            Match match = Regex.Match(_connectionString, connectionStringRegex);
+            string server = match.Groups[1].Value;
+            string database = match.Groups[2].Value;
+            string user = match.Groups[3].Value;
+            string password = match.Groups[4].Value;
+
+            if (server.Equals(string.Empty) || database.Equals(string.Empty) ||
+                user.Equals(string.Empty) || password.Equals(string.Empty))
             {
-                _connectionString = connectionString;
+                return false;
             }
+
+            return true;
         }
     }
 }

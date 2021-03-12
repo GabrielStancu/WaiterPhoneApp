@@ -1,6 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
-using WaiterPhoneApp.Helpers;
+using System.Threading.Tasks;
+using WaiterPhoneApp.Database.Entities;
+using WaiterPhoneApp.Helpers.Exceptions;
 using WaiterPhoneApp.Helpers.ParametersHelpers;
 using WaiterPhoneApp.Models;
 
@@ -18,8 +21,8 @@ namespace WaiterPhoneApp.ViewModels
                 SetProperty<string>(ref _nickname, value);
             }
         }
-        
-        public ObservableCollection<Department> Departments { get; set; }
+
+        public ObservableCollection<Department> Departments { get; } = new ObservableCollection<Department>();
         private Department _crtDepartment;
         public Department CrtDepartment 
         {
@@ -81,10 +84,13 @@ namespace WaiterPhoneApp.ViewModels
             }
         }
 
-        public SettingsViewModel()
+        public SettingsViewModel(bool loadDepartments)
         {
-            LoadDepartments();
-            LoadSavedParameters();        
+            if (loadDepartments)
+            {
+                LoadDepartments();
+            }
+            LoadSavedParameters();
         }
 
         private void LoadSavedParameters()
@@ -101,34 +107,29 @@ namespace WaiterPhoneApp.ViewModels
             LoadAtStartup = bool.Parse(loadAtStartup.Equals(string.Empty) ? false.ToString() : loadAtStartup);
         }
 
-        private void LoadDepartments()
+        private async void LoadDepartments()
         {
-            //TODO: de luat din baza de date 
-            Departments = new ObservableCollection<Department>()
+            try
             {
-                new Department()
-                {
-                    Id = 1, 
-                    Name = "Hotel's Restaurant"
-                }, 
-                new Department()
-                {
-                    Id = 2, 
-                    Name = "Main Restaurant"
-                },
-                new Department()
-                {
-                    Id = 3, 
-                    Name = "Fast Food Restaurant"
-                }
-            };
+                var dbDepartments = await new DepartmentEntity().SelectAllDepartments();
+                dbDepartments.ForEach(d => Departments.Add(d));
+            }
+            catch(SqlException)
+            {
+                //throw new BadConnectionStringException();
+            }
         }
 
         private Department SelectCurrentDepartment(SettingsPageParametersLoader loader)
         {
             string departmentName = loader.Department?.Value;
 
-            if(departmentName.Equals(string.Empty))
+            if (departmentName.Equals(string.Empty))
+            {
+                return null;
+            }
+
+            if (Departments.Count == 0)
             {
                 return null;
             }
